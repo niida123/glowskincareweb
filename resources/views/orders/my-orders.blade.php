@@ -115,6 +115,56 @@
             gap: 1rem;
         }
 
+        @media (max-width: 991.98px) {
+            .navbar {
+                padding: 0.75rem 0;
+            }
+
+            .navbar-collapse {
+                margin-top: 1rem;
+                padding: 1rem 1.25rem;
+                border-radius: 16px;
+                background: rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(12px);
+            }
+
+            .navbar-nav {
+                margin-bottom: 1rem;
+                align-items: flex-start;
+            }
+
+            .navbar-actions,
+            .user-menu {
+                width: 100%;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+
+            .navbar-actions {
+                gap: 0.75rem;
+            }
+
+            .user-menu {
+                align-items: flex-start;
+            }
+
+            .navbar-actions .btn,
+            .navbar-actions .nav-link,
+            .navbar-actions .dropdown,
+            .navbar-actions form {
+                width: 100%;
+            }
+
+            .navbar-actions .dropdown {
+                display: flex;
+                justify-content: flex-start;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+        }
+
         .page-header {
             background: white;
             color: var(--dark-color);
@@ -460,7 +510,7 @@
 
                 @if($order->items->count() > 0)
                     <div class="order-items">
-                        <div class="item-label">📦 Items Ordered</div>
+                        <div class="item-label" style="font-weight: 700; color: var(--primary-color);"><i class="fas fa-box-open me-2"></i>Items Ordered</div>
                         @foreach($order->items as $item)
                             @php
                                 $unitPrice = (float) ($item->unit_price ?? 0);
