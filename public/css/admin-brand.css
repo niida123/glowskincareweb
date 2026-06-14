@@ -1,0 +1,267 @@
+/* ===============================
+   Glow Skincare Admin Branding
+   — Professional Edition (Fixed)
+================================ */
+
+/* ── BRAND LINK (sidebar header) ── */
+.brand-link {
+    background: linear-gradient(135deg, #7970ac, #8f86d6) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+    padding: 0.8rem 1rem;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none !important;
+}
+
+/* ── REMOVE ANY DEFAULT BACKGROUND CONFLICT ── */
+.brand-link,
+.brand-link img,
+.brand-link .brand-image,
+.brand-link .logo-xl,
+.brand-link .logo-xs {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* ── LOGO IMAGE (CIRCLE STYLE) ── */
+.brand-link .brand-image,
+.brand-link .logo-xl {
+    height: 78px;
+    width: 78px;
+    max-height: none !important;
+    object-fit: cover;
+    opacity: 1 !important;
+
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.45);
+
+    box-shadow: 0 0 0 4px rgba(121, 112, 172, 0.20),
+                0 4px 16px rgba(0, 0, 0, 0.30);
+
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+
+    margin: 0;
+    flex-shrink: 0;
+    display: block;
+}
+
+.brand-link:hover .brand-image,
+.brand-link:hover .logo-xl {
+    transform: scale(1.06);
+    border-color: rgba(255, 255, 255, 0.80);
+    box-shadow: 0 0 0 5px rgba(121, 112, 172, 0.25),
+                0 6px 22px rgba(0, 0, 0, 0.35);
+}
+
+/* ── COLLAPSED LOGO ── */
+.brand-link .logo-xs {
+    height: 52px;
+    width: 52px;
+    max-height: none !important;
+    object-fit: cover;
+
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+
+    box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.15),
+                0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* ── BRAND TEXT ── */
+.brand-link .brand-text {
+    color: #ffffff !important;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0.9;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.brand-link .brand-text em {
+    font-style: normal;
+    color: #e0d9ff;
+}
+
+/* ── DIVIDER ── */
+.brand-link + .sidebar-search,
+.brand-link + .sidebar-form {
+    border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ===============================
+   Sidebar Collapse Mode
+================================ */
+.sidebar-mini.sidebar-collapse .brand-link {
+    min-height: 80px;
+    padding: 0;
+    gap: 0;
+}
+
+.sidebar-mini.sidebar-collapse .brand-link .brand-image,
+.sidebar-mini.sidebar-collapse .brand-link .logo-xl {
+    height: 50px;
+    width: 50px;
+}
+
+.sidebar-mini.sidebar-collapse .brand-link .logo-xs {
+    height: 46px;
+    width: 46px;
+}
+
+.sidebar-mini.sidebar-collapse .brand-text {
+    display: none;
+}
+
+/* ===============================
+   Sidebar Navigation
+================================ */
+.nav-sidebar .nav-item > .nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.55rem 0.9rem;
+    color: rgba(255,255,255,0.85) !important;
+    transition: all 0.15s ease;
+}
+
+.nav-sidebar .nav-item > .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.10) !important;
+    color: #fff !important;
+}
+
+.nav-sidebar .nav-item > .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.18) !important;
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.nav-sidebar .nav-header {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35) !important;
+}
+
+/* ===============================
+   Sidebar Background
+================================ */
+.main-sidebar {
+    background: linear-gradient(135deg, #7970ac, #8f86d6) !important;
+}
+
+/* ===============================
+   Navbar Styling
+================================ */
+.navbar {
+    background: linear-gradient(90deg, #7970ac, #8f86d6) !important;
+    color: #fff;
+}
+
+.navbar .nav-link,
+.navbar-brand {
+    color: #fff !important;
+}
+
+/* ===============================
+   Layout spacing fix
+================================ */
+main {
+    margin-top: 70px;
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 991px) {
+    .brand-link {
+        min-height: 95px;
+    }
+
+    .brand-link .brand-image,
+    .brand-link .logo-xl {
+        height: 66px;
+        width: 66px;
+    }
+}
+
+@media (max-width: 768px) {
+    .brand-link {
+        min-height: 85px;
+        padding: 0.6rem 0.85rem;
+    }
+
+    .brand-link .brand-image,
+    .brand-link .logo-xl {
+        height: 58px;
+        width: 58px;
+    }
+
+    .brand-text {
+        font-size: 0.78rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .brand-link {
+        min-height: 75px;
+    }
+
+    .brand-link .brand-image,
+    .brand-link .logo-xl {
+        height: 48px;
+        width: 48px;
+    }
+
+    .brand-text {
+        font-size: 0.72rem;
+    }
+}
+/* ===============================
+   Fix: Space between logo and menu
+================================ */
+
+/* Keep brand area above nav without overlapping clicks */
+.main-sidebar .brand-link {
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 30;
+}
+
+/* Prevent image/glow hitbox from stealing clicks near first nav item */
+.main-sidebar .brand-link .brand-image,
+.main-sidebar .brand-link .logo-xl,
+.main-sidebar .brand-link .logo-xs {
+    pointer-events: none;
+}
+
+/* Push nav down clearly from brand block */
+.main-sidebar .sidebar {
+    padding-top: 12px;
+    position: relative;
+    z-index: 10;
+}
+
+.main-sidebar .nav-sidebar {
+    margin-top: 8px;
+}
+
+.main-sidebar .nav-sidebar > .nav-item:first-child {
+    margin-top: 8px;
+}
+
+/* If sidebar search exists, keep it separated as well */
+.main-sidebar .brand-link + .sidebar-search,
+.main-sidebar .brand-link + .sidebar-form {
+    margin-top: 12px;
+}
