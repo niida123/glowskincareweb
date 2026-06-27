@@ -16,9 +16,12 @@
 
     <style>
         :root {
-            --primary-color: #8b5cf6;
-            --dark-color: #2d1b4e;
-            --light-color: #f8f9fa;
+            --primary: #ce6ad7;
+            --secondary: #f3f4f6;
+            --dark: #111827;
+            --light: #ffffff;
+            --border: #e5e7eb;
+            --text: #374151;
         }
 
         body {
@@ -34,9 +37,9 @@
 
         /* Navbar */
         .navbar {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.95) 0%, rgba(236, 72, 153, 0.95) 100%);
+            background: var(--primary);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
             padding: 1rem 0;
         }
 
@@ -62,7 +65,7 @@
 
         .btn-custom {
             background: white;
-            color: var(--primary-color);
+            color: var(--primary);
             border: 2px solid white;
             padding: 0.5rem 1.5rem;
             border-radius: 25px;
@@ -92,16 +95,17 @@
         }
 
         .user-menu .dropdown-menu {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.98) 0%, rgba(192, 108, 132, 0.98) 100%);
-            border: none;
+            background: white;
+            border: 1px solid var(--border);
             border-radius: 10px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             min-width: 200px;
             margin-top: 0.5rem;
+            z-index: 1050; 
         }
 
         .user-menu .dropdown-item {
-            color: white;
+            color: var(--text);
             padding: 0.75rem 1.25rem;
             border-radius: 6px;
             margin: 0.25rem 0.5rem;
@@ -109,8 +113,8 @@
         }
 
         .user-menu .dropdown-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
+            background: var(--secondary);
+            color: var(--dark);
         }
 
         .user-menu .dropdown-item i {
@@ -118,20 +122,21 @@
             width: 18px;
         }
 
-        .user-info {
+        .nav-user-info {
             padding: 0.75rem 1.25rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border);
             margin-bottom: 0.5rem;
         }
 
         .user-info-name {
-            color: white;
+            color: var(--dark);
             font-weight: 600;
             font-size: 0.9rem;
         }
 
         .user-info-email {
-            color: rgba(255, 255, 255, 0.7);
+            color: #6b7280;
+            ;
             font-size: 0.8rem;
         }
 
@@ -139,6 +144,15 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+        }
+
+        /* This is the billing info box — keep it distinct */
+        .billing-info-box {
+            background: #f0f7ff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
         }
 
         @media (max-width: 991.98px) {
@@ -192,17 +206,25 @@
         }
 
         .page-header {
-            color: purple;
-            padding: 1rem 0;
-            margin-bottom: 2rem;
+            background: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
-        .header-line {
+        .page-header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+        }
+
+        /* .header-line {
             width: 100%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
             margin-top: 12px;
-        }
+        } */
 
         .checkout-card {
             background: white;
@@ -252,7 +274,7 @@
         .item-price {
             text-align: right;
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--primary);
         }
 
         .summary-section {
@@ -273,7 +295,7 @@
             border: none;
             font-size: 1.3rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--primary);
             padding-top: 1rem;
             margin-top: 1rem;
             border-top: 2px solid #ddd;
@@ -284,7 +306,18 @@
             padding: 1rem;
             border-radius: 8px;
             margin-bottom: 1.5rem;
-            border-left: 4px solid var(--primary-color);
+            border-left: 4px solid var(--primary);
+        }
+
+        /* navbar icon */
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        .navbar-toggler:focus,
+        .navbar-toggler:active {
+            outline: none;
+            box-shadow: none;
         }
 
         .confirmation-checkbox {
@@ -305,7 +338,7 @@
 
         .btn-place-order {
             width: 100%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            background: var(--primary);
             color: white;
             border: none;
             padding: 1rem;
@@ -318,23 +351,37 @@
         .btn-place-order:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
-            color: white;
+            color: rgb(255, 255, 255);
+            background: #c41f73;
+            
         }
 
         .btn-place-order:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+            background: #ce6ad7;
+            color: #ffffff;
         }
-
         .btn-back {
             width: 100%;
-            background: #6c757d;
-            color: white;
-            border: none;
+            background: rgb(143, 143, 143);
+            color: #ffffff;
+            border: 1.5px solid #e5e7eb;
             padding: 0.75rem;
             border-radius: 8px;
             font-weight: 600;
             margin-top: 0.5rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background: #c41f73;
+            color: #ffffff;
+            border-color: #ffffff;
+            text-decoration: none;
         }
 
         .error-alert {
@@ -388,7 +435,7 @@
                                     class="navbar-profile-image">
                             @else
                                 <div class="navbar-profile-image"
-                                    style="background: var(--primary-color); display: flex; align-items: center; justify-content: center;">
+                                    style="background: var(--primary); display: flex; align-items: center; justify-content: center;">
                                     <i class="fas fa-user" style="color: white;"></i>
                                 </div>
                             @endif
@@ -400,7 +447,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <div class="user-info">
+                                        <div class="nav-user-info">
                                             <div class="user-info-name">{{ auth()->user()->name }}</div>
                                             <div class="user-info-email">{{ auth()->user()->email }}</div>
                                         </div>
@@ -446,7 +493,7 @@
     <div class="page-header">
         <div class="container">
             <h1><i class="fas fa-lock me-2"></i> Secure Checkout</h1>
-            <div class="header-line"></div>
+            {{-- <div class="header-line"></div> --}}
         </div>
     </div>
 
@@ -457,7 +504,7 @@
                 <!-- User Info -->
                 <div class="checkout-card">
                     <h4 class="mb-3"><i class="fas fa-user me-2"></i> Billing Information</h4>
-                    <div class="user-info">
+                    <div class="billing-info-box">
                         <div><strong>Name:</strong> {{ auth()->user()->name }}</div>
                         <div><strong>Email:</strong> {{ auth()->user()->email }}</div>
                     </div>
@@ -482,10 +529,13 @@
                                 <div class="item-details">
                                     Qty: {{ $item['quantity'] }} × ${{ number_format($item['finalPrice'], 2) }}
                                 </div>
-                                @if(($item['product']->discount ?? 0) > 0)
+                                @if (($item['product']->discount ?? 0) > 0)
                                     <small class="text-muted d-block">
                                         <s>${{ number_format($item['product']->price, 2) }}</s>
-                                        <span class="text-success ms-1">-{{ rtrim(rtrim(number_format($item['product']->discount, 2), '0'), '.') }}% (save ${{ number_format($item['product']->price - $item['finalPrice'], 2) }})</span>
+                                        <span
+                                            class="text-success ms-1">-{{ rtrim(rtrim(number_format($item['product']->discount, 2), '0'), '.') }}%
+                                            (save
+                                            ${{ number_format($item['product']->price - $item['finalPrice'], 2) }})</span>
                                     </small>
                                 @endif
                             </div>
@@ -566,12 +616,20 @@
                                         <span class="input-group-text"><i class="fas fa-search"></i></span>
                                         <input type="text" id="address_search" class="form-control"
                                             placeholder="Search an address...">
-                                        <button type="button" class="btn btn-outline-secondary" id="searchAddressBtn">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            id="searchAddressBtn">
                                             Search
                                         </button>
                                     </div>
-                                    <div id="map" style="height: 320px; border-radius: 8px;" class="mb-2"></div>
-                                    <button type="button" class="btn btn-sm btn-outline-primary mb-3" id="locateMeBtn">
+                                    <div id="map" style="height: 320px; border-radius: 8px;" class="mb-2">
+                                    </div>
+                                    @if($savedLat && $savedLng)
+                                        <div class="alert alert-info py-2 px-3 mb-2" style="font-size: 0.85rem;">
+                                            <i class="fas fa-map-marker-alt me-1"></i> Using your saved address. Drag the pin if you want to deliver somewhere else for this order.
+                                        </div>
+                                    @endif
+                                    <button type="button" class="btn btn-sm btn-outline-primary mb-3"
+                                        id="locateMeBtn">
                                         <i class="fas fa-location-crosshairs me-1"></i> Use My Location
                                     </button>
                                     <input type="hidden" name="latitude" id="latitude">
@@ -661,30 +719,58 @@
             </div>
 
             <!-- Order Total Sidebar -->
+            <!-- Order Total Sidebar -->
             <div class="col-lg-4">
-                <div class="checkout-card sticky-top" style="top: 100px;">
-                    <h5 class="mb-3">Order Total</h5>
-                    <div class="summary-section">
-                        <div class="summary-row">
-                            <span>Items ({{ count($cartItems) }}):</span>
-                            <span id="subtotalSidebar">${{ number_format($subtotal, 2) }}</span>
+                <div class="sticky-top" style="top: 100px; z-index: 1;">
+                    <div
+                        style="background: white; border: 0.5px solid #e5e7eb; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
+
+                        <!-- Header -->
+                        <div
+                            style="padding: 1rem 1.25rem; border-bottom: 0.5px solid #e5e7eb; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-receipt" style="color: #ce6ad7;"></i>
+                            <span style="font-size: 1rem; font-weight: 600; color: #111827;">Order Total</span>
                         </div>
-                        <div class="summary-row" id="deliveryDistanceRowSidebar" style="display:none;">
-                            <span>Distance:</span>
-                            <span id="deliveryDistanceSidebar">0.00 km</span>
+
+                        <!-- Rows -->
+                        <div style="padding: 0.25rem 1.25rem;">
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; padding: 0.65rem 0; border-bottom: 0.5px solid #e5e7eb;">
+                                <span style="font-size:0.9rem; color:#6b7280;">Items ({{ count($cartItems) }})</span>
+                                <span style="font-size:0.9rem; font-weight:600; color:#111827;"
+                                    id="subtotalSidebar">${{ number_format($subtotal, 2) }}</span>
+                            </div>
+
+                            <div id="deliveryDistanceRowSidebar"
+                                style="display:none; justify-content:space-between; align-items:center; padding: 0.65rem 0; border-bottom: 0.5px solid #e5e7eb;">
+                                <span style="font-size:0.9rem; color:#6b7280;">Distance</span>
+                                <span style="font-size:0.9rem; color:#111827;" id="deliveryDistanceSidebar">0.00
+                                    km</span>
+                            </div>
+
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; padding: 0.65rem 0; border-bottom: 0.5px solid #e5e7eb;">
+                                <span style="font-size:0.9rem; color:#6b7280;">Delivery fee</span>
+                                <span
+                                    style="font-size:0.85rem; font-weight:600; background:#f0fdf4; color:#16a34a; padding: 2px 10px; border-radius:20px;"
+                                    id="deliveryFeeSidebar">Free</span>
+                            </div>
+
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; padding: 0.65rem 0;">
+                                <span style="font-size:0.9rem; color:#6b7280;">Tax</span>
+                                <span style="font-size:0.9rem; color:#9ca3af;">$0.00</span>
+                            </div>
                         </div>
-                        <div class="summary-row">
-                            <span>Delivery Fee:</span>
-                            <span id="deliveryFeeSidebar">$0.00</span>
+
+                        <!-- Total -->
+                        <div
+                            style="margin: 0 1.25rem; padding: 0.9rem 0; border-top: 1.5px solid #ce6ad7; display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:0.95rem; font-weight:600; color:#111827;">Total</span>
+                            <span style="font-size:1.3rem; font-weight:700; color:#ce6ad7;"
+                                id="totalSidebar">${{ number_format($total, 2) }}</span>
                         </div>
-                        <div class="summary-row">
-                            <span>Tax:</span>
-                            <span>$0.00</span>
-                        </div>
-                        <div class="summary-row total">
-                            <span>Total:</span>
-                            <span id="totalSidebar">${{ number_format($total, 2) }}</span>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -718,7 +804,7 @@
             $deliveryConfigForJs = $deliveryConfig ?? [
                 'origin_lat' => 11.5564,
                 'origin_lng' => 104.9282,
-                'base_fee' => 1.50,
+                'base_fee' => 1.5,
                 'fee_per_km' => 0.35,
             ];
         @endphp
@@ -907,10 +993,20 @@
         let mapInitialised = false;
 
         // Default: Phnom Penh, Cambodia
+        // Use saved profile location if available, otherwise fallback to Phnom Penh
+        const SAVED_LAT = @json($savedLat);
+        const SAVED_LNG = @json($savedLng);
+        const SAVED_ADDRESS = @json($savedAddress);
+
         const DEFAULT_CENTER = {
-            lat: 11.5564,
-            lng: 104.9282
+            lat: SAVED_LAT ? parseFloat(SAVED_LAT) : 11.5564,
+            lng: SAVED_LNG ? parseFloat(SAVED_LNG) : 104.9282
         };
+
+        const HAS_SAVED_LOCATION = !!(SAVED_LAT && SAVED_LNG);
+        // Pre-seed hidden fields immediately so pricing works before the map loads
+        document.getElementById('latitude').value = DEFAULT_CENTER.lat;
+        document.getElementById('longitude').value = DEFAULT_CENTER.lng;
 
         function initDeliveryMap() {
             if (mapInitialised) {
@@ -919,7 +1015,7 @@
             }
             mapInitialised = true;
 
-            map = L.map('map').setView([DEFAULT_CENTER.lat, DEFAULT_CENTER.lng], 13);
+            map = L.map('map').setView([DEFAULT_CENTER.lat, DEFAULT_CENTER.lng], HAS_SAVED_LOCATION ? 16 : 13);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
@@ -931,9 +1027,17 @@
                 title: 'Drag me to your delivery location'
             }).addTo(map);
 
-            // Seed hidden fields with default center
+            // Seed hidden fields with default/saved center
             setHiddenLatLng(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng);
-            reverseGeocode(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng);
+
+            if (HAS_SAVED_LOCATION && SAVED_ADDRESS) {
+                // Fill the address line with the saved address immediately
+                document.getElementById('address_line').value = SAVED_ADDRESS;
+                // Trigger reverse geocode to also populate city/state/postal/country fields
+                reverseGeocode(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng);
+            } else {
+                reverseGeocode(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng);
+            }
 
             // Click on map -> move marker
             map.on('click', function(e) {
@@ -983,7 +1087,8 @@
                             locateBtn.disabled = false;
                             locateBtn.innerHTML = origHTML;
                             alert(
-                                'Unable to get your location. Please allow location access or pick a spot on the map.');
+                                'Unable to get your location. Please allow location access or pick a spot on the map.'
+                                );
                         }, {
                             enableHighAccuracy: true,
                             timeout: 10000,
@@ -1125,6 +1230,9 @@
         @endif
 
         updatePricingSummary();
+         if (HAS_SAVED_LOCATION && SAVED_ADDRESS) {
+            document.getElementById('address_line').value = SAVED_ADDRESS;
+        }
     </script>
 </body>
 

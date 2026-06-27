@@ -46,6 +46,9 @@ class CheckoutController extends Controller
         $deliveryFee = 0;
         $deliveryDistanceKm = 0;
         $total = $subtotal;
+        $savedLat = auth()->user()->latitude;
+        $savedLng = auth()->user()->longitude;
+        $savedAddress = auth()->user()->address_line;
 
         return view('checkout.index', compact(
             'cartItems',
@@ -53,7 +56,10 @@ class CheckoutController extends Controller
             'deliveryConfig',
             'deliveryFee',
             'deliveryDistanceKm',
-            'total'
+            'total',
+            'savedLat',
+            'savedLng',
+            'savedAddress'
         ));
     }
 
@@ -70,6 +76,7 @@ class CheckoutController extends Controller
             'latitude' => 'required_if:fulfillment_method,delivery|nullable|numeric',
             'longitude' => 'required_if:fulfillment_method,delivery|nullable|numeric',
             'delivery_notes' => 'nullable|string|max:1000',
+            
         ]);
 
         $cart = session()->get('cart', []);
@@ -126,6 +133,7 @@ class CheckoutController extends Controller
                     'total' => $total,
                     'status' => Order::STATUS_PENDING,
                     'fulfillment_method' => $request->input('fulfillment_method'),
+                    'delivery_charge' => (float) $delivery['fee'], 
                     'address_line' => $request->input('address_line'),
                     'city' => $request->input('city'),
                     'state' => $request->input('state'),

@@ -10,26 +10,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+        .navbar-toggler:focus,
+        .navbar-toggler:active {
+            outline: none;
+            box-shadow: none;
+        }
         :root {
-            --primary-color: #8b5cf6;
-            --dark-color: #2d1b4e;
-            --light-color: #f8f9fa;
+            --primary: #ce6ad7;
+            --secondary: #f3f4f6;
+            --dark: #111827;
+            --light: #ffffff;
+            --border: #e5e7eb;
+            --text: #374151;
+            --danger: #ef4444;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            color: var(--dark-color);
-            background-color: var(--light-color);
+            color: var(--text);
+            background-color: var(--secondary);
         }
 
-        h1, h2 {
+        h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
+            color: var(--dark);
         }
 
+        /* ── Navbar ── */
         .navbar {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.95) 0%, rgba(236, 72, 153, 0.95) 100%);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            background: var(--primary);
+            box-shadow: 0 1px 8px rgba(0,0,0,0.08);
             padding: 1rem 0;
         }
 
@@ -68,16 +81,16 @@
         }
 
         .user-menu .dropdown-menu {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.98) 0%, rgba(192, 108, 132, 0.98) 100%);
-            border: none;
+            background: white;
+            border: 1px solid var(--border);
             border-radius: 10px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
             min-width: 200px;
             margin-top: 0.5rem;
         }
 
         .user-menu .dropdown-item {
-            color: white;
+            color: var(--text);
             padding: 0.75rem 1.25rem;
             border-radius: 6px;
             margin: 0.25rem 0.5rem;
@@ -85,8 +98,8 @@
         }
 
         .user-menu .dropdown-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
+            background: var(--secondary);
+            color: var(--dark);
         }
 
         .user-menu .dropdown-item i {
@@ -96,18 +109,18 @@
 
         .user-info {
             padding: 0.75rem 1.25rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border);
             margin-bottom: 0.5rem;
         }
 
         .user-info-name {
-            color: white;
+            color: var(--dark);
             font-weight: 600;
             font-size: 0.9rem;
         }
 
         .user-info-email {
-            color: rgba(255, 255, 255, 0.7);
+            color: #6b7280;
             font-size: 0.8rem;
         }
 
@@ -167,18 +180,32 @@
             }
         }
 
+        /* ── Page Header ── */
         .page-header {
-            color: rgb(0, 0, 0);
-            padding: 3rem 0;
-            margin-bottom: 2rem;
-        }
-        .header-line {
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-            margin-top: 12px;
+            background: white;
+            padding: 40px 0;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
+        .page-header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .page-header p {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* ── Cart Item ── */
         .cart-item {
             background: white;
             border-radius: 10px;
@@ -186,20 +213,28 @@
             margin-bottom: 1rem;
             display: flex;
             gap: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid var(--border);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .cart-item:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
         }
 
         .item-image {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--secondary);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #aaa;
             font-size: 2rem;
             flex-shrink: 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
         }
 
         .item-details {
@@ -208,116 +243,175 @@
 
         .item-name {
             font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+            margin-bottom: 0.35rem;
+            color: var(--dark);
         }
 
         .item-price {
-            color: var(--primary-color);
-            font-weight: 600;
-            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.15rem;
         }
 
         .quantity-control {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-top: 0.5rem;
+            margin-top: 0.75rem;
         }
 
         .quantity-control button {
-            width: 35px;
-            height: 35px;
+            width: 34px;
+            height: 34px;
             padding: 0;
-            border: 1px solid #ddd;
+            border: 1.5px solid var(--border);
             background: white;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            color: var(--text);
+            transition: all 0.2s ease;
+        }
+
+        .quantity-control button:hover {
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         .quantity-control input {
-            width: 50px;
+            width: 52px;
             text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 0.25rem;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            padding: 0.3rem;
+            font-size: 0.95rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .btn-remove {
+            background: white;
+            border: 1.5px solid #fca5a5;
+            color: var(--danger);
+            border-radius: 6px;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+        }
+
+        .btn-remove:hover {
+            background: #fee2e2;
+            border-color: var(--danger);
         }
 
         .item-subtotal {
             text-align: right;
             font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary-color);
+            font-size: 1.15rem;
+            color: var(--primary);
+            white-space: nowrap;
+            align-self: center;
         }
 
+        /* ── Cart Summary ── */
         .cart-summary {
             background: white;
             border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 1.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid var(--border);
+            position: sticky;
+            top: 80px;
+        }
+
+        .cart-summary h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.25rem;
+            color: var(--dark);
         }
 
         .summary-row {
             display: flex;
             justify-content: space-between;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #eee;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: var(--text);
         }
 
         .summary-row.total {
             border: none;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--primary);
             padding-top: 1rem;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
 
         .btn-checkout {
             width: 100%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 1rem;
+            padding: 0.85rem;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-top: 1rem;
             transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            text-align: center;
         }
 
         .btn-checkout:hover {
+            filter: brightness(0.9);
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+            box-shadow: 0 5px 15px rgba(206,106,215,0.3);
             color: white;
         }
 
         .btn-continue {
             width: 100%;
-            background: #6c757d;
-            color: white;
-            border: none;
-            padding: 0.75rem;
+            background: white;
+            color: var(--text);
+            border: 1.5px solid var(--border);
+            padding: 0.7rem;
             border-radius: 8px;
             font-weight: 600;
-            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            margin-top: 0.6rem;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
         }
 
+        .btn-continue:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ── Empty Cart ── */
         .empty-cart {
             text-align: center;
             padding: 4rem 2rem;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 15px;
-            border: 2px dashed #dee2e6;
-            margin-top: 2rem;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .empty-cart-icon {
             font-size: 5rem;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
             margin-bottom: 1.5rem;
             animation: float 3s ease-in-out infinite;
         }
@@ -328,15 +422,14 @@
         }
 
         .empty-cart h3 {
-            font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: var(--dark-color);
+            color: var(--dark);
             margin-bottom: 0.5rem;
             font-weight: 700;
         }
 
         .empty-cart-text {
-            color: #6c757d;
+            color: #6b7280;
             font-size: 1rem;
             margin-bottom: 2rem;
             line-height: 1.6;
@@ -350,7 +443,7 @@
         }
 
         .btn-shop {
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            background: var(--primary);
             color: white;
             border: none;
             padding: 0.75rem 2rem;
@@ -364,15 +457,16 @@
         }
 
         .btn-shop:hover {
+            filter: brightness(0.9);
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+            box-shadow: 0 5px 15px rgba(206,106,215,0.3);
             color: white;
         }
 
         .btn-browse {
             background: white;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
+            color: var(--primary);
+            border: 2px solid var(--primary);
             padding: 0.55rem 1.8rem;
             border-radius: 25px;
             font-weight: 600;
@@ -384,7 +478,7 @@
         }
 
         .btn-browse:hover {
-            background: var(--primary-color);
+            background: var(--primary);
             color: white;
             transform: translateY(-2px);
         }
@@ -392,11 +486,11 @@
         .empty-cart-tips {
             margin-top: 2.5rem;
             padding-top: 2rem;
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solid var(--border);
         }
 
         .empty-cart-tips h5 {
-            color: var(--dark-color);
+            color: var(--dark);
             font-weight: 600;
             margin-bottom: 1rem;
         }
@@ -407,7 +501,7 @@
             gap: 2rem;
             flex-wrap: wrap;
             font-size: 0.95rem;
-            color: #6c757d;
+            color: #6b7280;
         }
 
         .tips-list div {
@@ -415,8 +509,31 @@
         }
 
         .tips-list i {
-            color: var(--primary-color);
+            color: var(--primary);
             margin-right: 0.5rem;
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 576px) {
+            .cart-item {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .item-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            .item-subtotal {
+                width: 100%;
+                text-align: left;
+                font-size: 1rem;
+            }
+
+            .cart-summary {
+                position: static;
+            }
         }
     </style>
 </head>
@@ -458,7 +575,7 @@
                             @if(auth()->user()->profile_image)
                                 <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile" class="navbar-profile-image">
                             @else
-                                <div class="navbar-profile-image" style="background: var(--primary-color); display: flex; align-items: center; justify-content: center;">
+                                <div class="navbar-profile-image" style="background: rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center;">
                                     <i class="fas fa-user" style="color: white;"></i>
                                 </div>
                             @endif
@@ -508,12 +625,12 @@
     <div class="page-header">
         <div class="container">
             <h1><i class="fas fa-shopping-cart me-2"></i> Shopping Cart</h1>
-            <div class="header-line"></div>
+            <p>Review your selected items before checkout</p>
         </div>
     </div>
 
     <!-- Cart Contents -->
-    <div class="container py-4">
+    <div class="container pb-5">
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -533,7 +650,7 @@
                     <div class="cart-item">
                         <div class="item-image">
                             @if($item['product']->image)
-                                <img src="/storage/{{ $item['product']->image }}" alt="{{ $item['product']->name }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                                <img src="/storage/{{ $item['product']->image }}" alt="{{ $item['product']->name }}" style="width: 100%; height: 100%; object-fit: cover;">
                             @else
                                 <i class="fas fa-image"></i>
                             @endif
@@ -551,7 +668,7 @@
                                 <button onclick="updateQuantity({{ $item['product']->id }}, -1)">−</button>
                                 <input type="number" id="qty-{{ $item['product']->id }}" value="{{ $item['quantity'] }}" min="1" onchange="updateQuantity({{ $item['product']->id }}, parseInt(this.value))">
                                 <button onclick="updateQuantity({{ $item['product']->id }}, 1)">+</button>
-                                <button type="button" class="btn btn-outline-danger" onclick="removeItem({{ $item['product']->id }})">
+                                <button type="button" class="btn-remove" onclick="removeItem({{ $item['product']->id }})">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
@@ -581,15 +698,9 @@
                         <div class="empty-cart-tips">
                             <h5>Why Shop With Us?</h5>
                             <div class="tips-list">
-                                <div>
-                                    <i class="fas fa-shipping-fast"></i> Fast Shipping
-                                </div>
-                                <div>
-                                    <i class="fas fa-shield-alt"></i> Secure Checkout
-                                </div>
-                                <div>
-                                    <i class="fas fa-star"></i> Premium Quality
-                                </div>
+                                <div><i class="fas fa-shipping-fast"></i> Fast Shipping</div>
+                                <div><i class="fas fa-shield-alt"></i> Secure Checkout</div>
+                                <div><i class="fas fa-star"></i> Premium Quality</div>
                             </div>
                         </div>
                     </div>
@@ -599,25 +710,27 @@
             @if(count($cartItems) > 0)
                 <div class="col-lg-4">
                     <div class="cart-summary">
-                        <h4 class="mb-3">Order Summary</h4>
-                        
+                        <h4>Order Summary</h4>
+
                         <div class="summary-row">
-                            <span>Subtotal:</span>
+                            <span>Subtotal</span>
                             <span>${{ number_format($subtotal, 2) }}</span>
                         </div>
                         <div class="summary-row">
-                            <span>Shipping:</span>
-                            <span>Free</span>
+                            <span>Shipping</span>
+                            <span style="color: #16a34a; font-weight: 600;">Free</span>
                         </div>
                         <div class="summary-row total">
-                            <span>Total:</span>
+                            <span>Total</span>
                             <span>${{ number_format($total, 2) }}</span>
                         </div>
 
-                        <a href="{{ route('checkout.index') }}" class="btn btn-checkout">
+                        <a href="{{ route('checkout.index') }}" class="btn-checkout">
                             <i class="fas fa-credit-card me-2"></i> Proceed to Checkout
                         </a>
-                        <a href="{{ route('products') }}" class="btn btn-continue">Continue Shopping</a>
+                        <a href="{{ route('products') }}" class="btn-continue">
+                            <i class="fas fa-arrow-left me-1"></i> Continue Shopping
+                        </a>
                     </div>
                 </div>
             @endif
@@ -629,18 +742,16 @@
         const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '{{ csrf_token() }}';
 
         function updateQuantity(productId, newQuantity) {
-            // If newQuantity is a delta (from +/- buttons), calculate absolute quantity
             const input = document.getElementById('qty-' + productId);
             const currentQty = parseInt(input.value);
-            
-            // If passed value is -1 or +1, it's a delta
+
             let finalQuantity;
             if (newQuantity === -1 || newQuantity === 1) {
                 finalQuantity = Math.max(1, currentQty + newQuantity);
             } else {
                 finalQuantity = Math.max(1, newQuantity);
             }
-            
+
             axios.post('/cart/update', {
                 product_id: productId,
                 quantity: finalQuantity

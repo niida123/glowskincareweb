@@ -27,7 +27,7 @@
 	}
 
 	.auth-visual {
-		background: linear-gradient(135deg, #8a5cf6 0%, #7c4dff 50%, #a06cf6 100%);
+		background: linear-gradient(135deg, #8a5cf6 0%, #ff4dff 100%);
 		color: #fff;
 		padding: 48px;
 		display: flex;
@@ -100,7 +100,7 @@
 	}
 
 	.btn-primary {
-		background: linear-gradient(135deg, #8a5cf6 0%, #7c4dff 100%);
+		background: linear-gradient(135deg, #a07df3 0%, #ff4dfc 100%);
 		border: none;
 		border-radius: 10px;
 		padding: 12px;

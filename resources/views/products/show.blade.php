@@ -10,28 +10,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+        .navbar-toggler:focus,
+        .navbar-toggler:active {
+            outline: none;
+            box-shadow: none;
+        }
         :root {
-            --primary-color: #8b5cf6;
-            --secondary-color: #e9d5ff;
-            --dark-color: #2d1b4e;
-            --light-color: #f8f9fa;
-            --accent-color: #ec4899;
+            --primary: #ce6ad7;
+            --secondary: #f3f4f6;
+            --dark: #111827;
+            --light: #ffffff;
+            --border: #e5e7eb;
+            --text: #374151;
+            --danger: #ef4444;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            color: var(--dark-color);
+            color: var(--text);
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
+            color: var(--dark);
         }
 
         /* Navbar */
         .navbar {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.95) 0%, rgba(236, 72, 153, 0.95) 100%);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            background: var(--primary);
+            box-shadow: 0 1px 8px rgba(0,0,0,0.08);
             padding: 1rem 0;
         }
 
@@ -70,16 +80,16 @@
         }
 
         .user-menu .dropdown-menu {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.98) 0%, rgba(192, 108, 132, 0.98) 100%);
-            border: none;
+            background: white;
+            border: 1px solid var(--border);
             border-radius: 10px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             min-width: 200px;
             margin-top: 0.5rem;
         }
 
         .user-menu .dropdown-item {
-            color: white;
+            color: var(--text);
             padding: 0.75rem 1.25rem;
             border-radius: 6px;
             margin: 0.25rem 0.5rem;
@@ -87,8 +97,8 @@
         }
 
         .user-menu .dropdown-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
+            background: var(--secondary);
+            color: var(--dark);
         }
 
         .user-menu .dropdown-item i {
@@ -98,18 +108,18 @@
 
         .user-info {
             padding: 0.75rem 1.25rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border);
             margin-bottom: 0.5rem;
         }
 
         .user-info-name {
-            color: white;
+            color: var(--dark);
             font-weight: 600;
             font-size: 0.9rem;
         }
 
         .user-info-email {
-            color: rgba(255, 255, 255, 0.7);
+            color: #6b7280;
             font-size: 0.8rem;
         }
 
@@ -187,7 +197,7 @@
 
         .product-category-tag {
             display: inline-block;
-            background: var(--primary-color);
+            background: var(--primary);
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
@@ -199,11 +209,12 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
+            color: var(--dark);
         }
 
         .product-price-large {
             font-size: 2rem;
-            color: var(--primary-color);
+            color: var(--primary);
             font-weight: 700;
             margin-bottom: 1.5rem;
         }
@@ -217,9 +228,9 @@
             font-weight: 600;
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
-            border: 1px solid #e7ecf3;
-            background: #f8fafc;
-            color: #1f2937;
+            border: 1px solid var(--border);
+            background: var(--secondary);
+            color: var(--text);
         }
 
         .stock-status-badge {
@@ -244,7 +255,7 @@
 
         .stock-out-detail {
             background: rgba(220, 53, 69, 0.16);
-            color: #b02a37;
+            color: var(--danger);
             border-color: rgba(220, 53, 69, 0.3);
         }
 
@@ -257,14 +268,14 @@
 
         .quantity-label {
             font-weight: 600;
-            color: var(--dark-color);
+            color: var(--dark);
             min-width: 90px;
         }
 
         .quantity-control {
             display: flex;
             align-items: center;
-            border: 2px solid #e7ecf3;
+            border: 2px solid var(--border);
             border-radius: 8px;
             width: fit-content;
         }
@@ -274,7 +285,7 @@
             height: 40px;
             border: none;
             background: transparent;
-            color: var(--primary-color);
+            color: var(--primary);
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -284,7 +295,7 @@
         }
 
         .quantity-btn:hover {
-            background: #f8fafc;
+            background: var(--secondary);
         }
 
         .quantity-input {
@@ -295,6 +306,7 @@
             font-weight: 600;
             font-size: 1rem;
             background: transparent;
+            color: var(--text);
         }
 
         .quantity-input:focus {
@@ -303,7 +315,7 @@
 
         .related-products-section {
             padding: 60px 0;
-            border-top: 1px solid #e7ecf3;
+            border-top: 1px solid var(--border);
             margin-top: 60px;
         }
 
@@ -311,23 +323,24 @@
             background: white;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             transition: all 0.3s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
+            border: 1px solid var(--border);
         }
 
         .related-product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
         }
 
         .related-product-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            background: var(--light-color);
+            background: var(--light);
         }
 
         .related-product-info {
@@ -340,7 +353,7 @@
         .related-product-name {
             font-size: 1rem;
             font-weight: 600;
-            color: var(--dark-color);
+            color: var(--dark);
             margin-bottom: 0.5rem;
             min-height: 2.2rem;
         }
@@ -348,12 +361,12 @@
         .related-product-price {
             font-size: 1.15rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--primary);
             margin-bottom: 1rem;
         }
 
         .related-btn-view {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            background: var(--primary);
             color: white;
             border: none;
             padding: 0.6rem 1.2rem;
@@ -369,13 +382,14 @@
 
         .related-btn-view:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
             color: white;
             text-decoration: none;
+            filter: brightness(0.9);
         }
 
         .btn-add-cart-large {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            background: var(--primary);
             color: white;
             border: none;
             padding: 1rem 3rem;
@@ -385,15 +399,19 @@
             transition: all 0.3s ease;
         }
 
+        .btn-add-cart-large:hover {
+            filter: brightness(0.9);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
         .btn-add-cart-large:disabled {
             opacity: 0.65;
             cursor: not-allowed;
             box-shadow: none;
         }
 
-
         .btn-back {
-            color: var(--primary-color);
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
@@ -404,32 +422,35 @@
         }
 
         .btn-back:hover {
-            color: var(--accent-color);
+            color: var(--dark);
             text-decoration: none;
             transform: translateX(-5px);
         }
 
+        /* Footer */
         .footer {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.95) 0%, rgba(236, 72, 153, 0.95) 100%);
-            color: white;
-            padding: 3rem 0 1rem;
-            margin-top: 4rem;
+            background: var(--secondary);
+            color: var(--text);
+            padding: 1.75rem 0 0.75rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
         }
 
         .footer h5 {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            margin-bottom: 0.85rem;
             font-weight: 700;
+            color: var(--dark);
         }
 
         .footer a {
-            color: rgba(255,255,255,0.85);
+            color: var(--text);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .footer a:hover {
-            color: white;
+            color: var(--primary);
         }
 
         .footer-links {
@@ -438,13 +459,13 @@
         }
 
         .footer-links li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .footer-divider {
-            border-top: 1px solid rgba(255,255,255,0.2);
-            margin-top: 2rem;
-            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 1.25rem;
+            padding-top: 1rem;
         }
 
         .social-links {
@@ -456,15 +477,19 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.2);
+            width: 34px;
+            height: 34px;
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--text);
             border-radius: 50%;
             transition: all 0.3s ease;
         }
 
         .social-links a:hover {
-            background: rgba(255,255,255,0.4);
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
             transform: translateY(-3px);
         }
     </style>
@@ -585,7 +610,7 @@
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                                 <div class="product-price-large" style="margin: 0; text-decoration: line-through; color: #999; font-size: 1.4rem;">${{ number_format($product->price, 2) }}</div>
                                 <div class="product-price-large" style="margin: 0;">${{ number_format($discountedPrice, 2) }}</div>
-                                <span style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 700;">-{{ $discount }}%</span>
+                                <span style="background: var(--secondary); color: var(--text); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 700;">-{{ $discount }}%</span>
                             </div>
                         @else
                             <div class="product-price-large">${{ number_format($product->price, 2) }}</div>
@@ -652,7 +677,7 @@
                                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
                                         <div class="related-product-price" style="margin: 0; text-decoration: line-through; color: #999; font-size: 0.9rem;">${{ number_format($relatedProduct->price, 2) }}</div>
                                         <div class="related-product-price" style="margin: 0;">${{ number_format($relatedDiscountedPrice, 2) }}</div>
-                                        <span style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); color: white; padding: 0.2rem 0.5rem; border-radius: 12px; font-size: 0.7rem; font-weight: 700;">-{{ $relatedDiscount }}%</span>
+                                        <span style="background: var(--secondary); color: var(--text); border: 1px solid var(--border); padding: 0.2rem 0.5rem; border-radius: 12px; font-size: 0.7rem; font-weight: 700;">-{{ $relatedDiscount }}%</span>
                                     </div>
                                 @else
                                     <div class="related-product-price">${{ number_format($relatedProduct->price, 2) }}</div>
@@ -697,7 +722,7 @@
                     </div>
                     <div style="margin-top: 1rem;">
                         <p style="margin: 0.5rem 0; font-size: 0.95rem;">
-                            <i class="fas fa-phone" style="color: #8b5cf6; margin-right: 0.5rem;"></i>
+                            <i class="fas fa-phone" style="color: var(--primary);margin-right: 0.5rem;"></i>
                             <a href="tel:+85596567890" style="text-decoration: none; color: inherit;">+855 96 567 890</a>
                         </p>
                     </div>

@@ -13,7 +13,7 @@
                 <p class="om-page-sub">Manage and track customer orders</p>
             </div>
         </div>
-        <button class="om-btn om-btn-primary" id="btnAddOrder">
+        <button class="om-btn om-btn-primary" id="btnAddOrder" style="display: none;">
             <i class="fas fa-plus"></i> Add Order
         </button>
     </div>
@@ -593,7 +593,7 @@
                 <button class="om-filter-tab" data-status="completed">Completed</button>
                 <button class="om-filter-tab" data-status="cancelled">Cancelled</button>
             </div>
-            <button class="om-btn om-btn-ghost" onclick="fetchOrders()">
+            <button class="om-btn om-btn-ghost" onclick="fetchOrders(1)">
                 <i class="fas fa-sync-alt"></i> Refresh
             </button>
         </div>
@@ -663,10 +663,10 @@
                         <div class="om-form-group">
                             <label class="om-label">Status <span class="req">*</span></label>
                             <select id="status" class="om-input">
-                                <option value="pending">⏳ Pending</option>
-                                <option value="processing">🔄 Processing</option>
-                                <option value="completed">✅ Completed</option>
-                                <option value="cancelled">❌ Cancelled</option>
+                                <option value="pending">Pending</option>
+                                <option value="processing">Processing</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
                             </select>
                             <span class="om-error" id="error-status"></span>
                         </div>
@@ -786,7 +786,7 @@ function statusBadgeClass(s) {
 }
 
 function statusIcon(s) {
-    return { pending: '⏳', processing: '🔄', completed: '✅', cancelled: '❌' }[s] || '';
+    return { pending: '', processing: '', completed: '', cancelled: '' }[s] || '';
 }
 
 function clearErrors() {
@@ -806,23 +806,32 @@ function showError(field, message) {
 }
 
 /* ── FETCH & RENDER ── */
-async function fetchOrders() {
+let currentPage = 1;
+let lastMeta = null;
+
+async function fetchOrders(page = 1) {
     const tbody = document.getElementById('ordersBody');
     tbody.innerHTML = `<tr><td colspan="8" class="om-empty">
         <div class="om-empty-icon"><i class="fas fa-spinner fa-spin"></i></div>
         <strong>Loading…</strong></td></tr>`;
 
     try {
-        const res = await axios.get('{{ route('admin.orders.list') }}');
-        let orders = res.data;
+        const res = await axios.get('{{ route('admin.orders.list') }}', {
+            params: { page, per_page: 10 }
+        });
 
-        // Filter by active status tab
+        // ← Handle paginated response
+        const paginated = res.data;
+        lastMeta = paginated;
+        let orders = paginated.data;
+
+        // Filter by active status tab (client-side on current page)
         if (activeStatusFilter) {
             orders = orders.filter(o => o.status === activeStatusFilter);
         }
 
         document.getElementById('orderCount').textContent =
-            orders.length + ' order' + (orders.length !== 1 ? 's' : '');
+            paginated.total + ' order' + (paginated.total !== 1 ? 's' : '');
 
         if (orders.length === 0) {
             tbody.innerHTML = `<tr><td colspan="8" class="om-empty">
@@ -831,14 +840,16 @@ async function fetchOrders() {
                 <p>No orders match the current filter.</p>
             </td></tr>`;
             document.getElementById('orderFooterInfo').textContent = '';
+            renderPagination(paginated);
             return;
         }
 
         tbody.innerHTML = '';
         orders.forEach((o, index) => {
+            const rowNum = (paginated.current_page - 1) * paginated.per_page + index + 1;
             tbody.innerHTML += `
             <tr>
-                <td><span class="om-row-num">${orders.length - index}</span></td>
+                <td><span class="om-row-num">${rowNum}</span></td>
                 <td><span class="om-badge om-badge-purple">#${o.id}</span></td>
                 <td>
                     <div class="om-customer-name">${o.user?.name ?? 'N/A'}</div>
@@ -852,10 +863,10 @@ async function fetchOrders() {
                     <select class="om-status-select ${statusClass(o.status)}"
                         data-order-id="${o.id}"
                         onchange="quickUpdateStatus(${o.id}, this)">
-                        <option value="pending"    ${o.status === 'pending'    ? 'selected' : ''}>⏳ Pending</option>
-                        <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>🔄 Processing</option>
-                        <option value="completed"  ${o.status === 'completed'  ? 'selected' : ''}>✅ Completed</option>
-                        <option value="cancelled"  ${o.status === 'cancelled'  ? 'selected' : ''}>❌ Cancelled</option>
+                        <option value="pending"    ${o.status === 'pending'    ? 'selected' : ''}>Pending</option>
+                        <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>Processing</option>
+                        <option value="completed"  ${o.status === 'completed'  ? 'selected' : ''}>Completed</option>
+                        <option value="cancelled"  ${o.status === 'cancelled'  ? 'selected' : ''}>Cancelled</option>
                     </select>
                 </td>
                 <td style="color:var(--om-text3);font-size:12.5px;">
@@ -878,7 +889,9 @@ async function fetchOrders() {
         });
 
         document.getElementById('orderFooterInfo').textContent =
-            `Showing ${orders.length} of ${res.data.length} orders`;
+            `Showing ${paginated.from ?? 0}–${paginated.to ?? 0} of ${paginated.total} orders`;
+
+        renderPagination(paginated);
 
     } catch (e) {
         tbody.innerHTML = `<tr><td colspan="8" class="om-empty">
@@ -887,6 +900,43 @@ async function fetchOrders() {
             <p>Please refresh the page and try again.</p>
         </td></tr>`;
     }
+}
+function renderPagination(meta) {
+    const container = document.getElementById('ordersPagination');
+    if (!meta || meta.last_page <= 1) { container.innerHTML = ''; return; }
+
+    let html = `<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">`;
+
+    // Prev
+    html += `<button class="om-btn om-btn-ghost" style="padding:6px 12px;font-size:12px;"
+        ${meta.current_page <= 1 ? 'disabled' : ''}
+        onclick="fetchOrders(${meta.current_page - 1})">
+        <i class="fas fa-chevron-left"></i>
+    </button>`;
+
+    // Page numbers
+    for (let p = 1; p <= meta.last_page; p++) {
+        if (
+            p === 1 || p === meta.last_page ||
+            (p >= meta.current_page - 1 && p <= meta.current_page + 1)
+        ) {
+            html += `<button class="om-btn ${p === meta.current_page ? 'om-btn-primary' : 'om-btn-ghost'}"
+                style="padding:6px 11px;font-size:12px;min-width:34px;"
+                onclick="fetchOrders(${p})">${p}</button>`;
+        } else if (p === meta.current_page - 2 || p === meta.current_page + 2) {
+            html += `<span style="color:var(--om-text3);padding:0 2px;">…</span>`;
+        }
+    }
+
+    // Next
+    html += `<button class="om-btn om-btn-ghost" style="padding:6px 12px;font-size:12px;"
+        ${meta.current_page >= meta.last_page ? 'disabled' : ''}
+        onclick="fetchOrders(${meta.current_page + 1})">
+        <i class="fas fa-chevron-right"></i>
+    </button>`;
+
+    html += `</div>`;
+    container.innerHTML = html;
 }
 
 /* ── STATUS FILTER TABS ── */

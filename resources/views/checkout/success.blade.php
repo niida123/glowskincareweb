@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,31 +8,35 @@
     <title>Order Confirmed - Glow Skincare</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
-            --primary-color: #8b5cf6;
-            --dark-color: #2d1b4e;
-            --light-color: #f8f9fa;
+            --primary: #ce6ad7;
+            --dark: #111827;
+            --light: #ffffff;
+            --border: #e5e7eb;
+            --text: #374151;
             --success-color: #28a745;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            color: var(--dark-color);
-            background-color: var(--light-color);
+            color: var(--dark);
+            background-color:#f3f4f6;
         }
 
-        h1, h2 {
+        h1,
+        h2 {
             font-family: 'Playfair Display', serif;
         }
 
         /* Navbar */
         .navbar {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.95) 0%, rgba(236, 72, 153, 0.95) 100%);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            background: var(--primary);
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
             padding: 1rem 0;
         }
 
@@ -40,11 +45,11 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: white !important;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .navbar-nav .nav-link {
-            color: rgba(255,255,255,0.9) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
             font-weight: 500;
             margin: 0 0.5rem;
             transition: all 0.3s ease;
@@ -54,10 +59,13 @@
             color: white !important;
             transform: translateY(-2px);
         }
+        /* Toggler Icon */
+        .navbar-toggler-icon { filter: invert(1); }
+        .navbar-toggler:focus, .navbar-toggler:active { outline: none; box-shadow: none; }
 
         .btn-custom {
             background: white;
-            color: var(--primary-color);
+            color: var(--primary);
             border: 2px solid white;
             padding: 0.5rem 1.5rem;
             border-radius: 25px;
@@ -69,7 +77,7 @@
             background: transparent;
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .navbar-profile-image {
@@ -87,16 +95,17 @@
         }
 
         .user-menu .dropdown-menu {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.98) 0%, rgba(192, 108, 132, 0.98) 100%);
-            border: none;
+            background: white;
+            border: 1px solid var(--border);
             border-radius: 10px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             min-width: 200px;
             margin-top: 0.5rem;
+            z-index: 1050;
         }
 
         .user-menu .dropdown-item {
-            color: white;
+            color: var(--text);
             padding: 0.75rem 1.25rem;
             border-radius: 6px;
             margin: 0.25rem 0.5rem;
@@ -104,10 +113,10 @@
         }
 
         .user-menu .dropdown-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
+            background: #f3f4f6;
+            color: var(--dark);
         }
-
+        
         .user-menu .dropdown-item i {
             margin-right: 0.5rem;
             width: 18px;
@@ -115,20 +124,21 @@
 
         .user-info {
             padding: 0.75rem 1.25rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border);
             margin-bottom: 0.5rem;
         }
 
         .user-info-name {
-            color: white;
+            color: var(--dark);
             font-weight: 600;
             font-size: 0.9rem;
         }
 
         .user-info-email {
-            color: rgba(255, 255, 255, 0.7);
+            color: #6b7280;
             font-size: 0.8rem;
         }
+
 
         .navbar-actions {
             display: flex;
@@ -197,7 +207,7 @@
             background: white;
             border-radius: 15px;
             padding: 3rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             text-align: center;
             max-width: 600px;
             margin: 0 auto;
@@ -206,7 +216,7 @@
         .success-icon {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            background: #22c55e;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -222,6 +232,7 @@
                 transform: scale(0);
                 opacity: 0;
             }
+
             to {
                 transform: scale(1);
                 opacity: 1;
@@ -246,7 +257,7 @@
             border-radius: 10px;
             padding: 2rem;
             margin: 2rem 0;
-            border-left: 5px solid var(--primary-color);
+            border-left: 5px solid var(--primary);
         }
 
         .detail-row {
@@ -311,7 +322,7 @@
         }
 
         .item-price {
-            color: var(--primary-color);
+            color: var(--primary);
             font-weight: 600;
         }
 
@@ -322,7 +333,7 @@
             border-top: 2px solid #ddd;
             font-size: 1.2rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--primary);
         }
 
         .btn-group {
@@ -332,8 +343,7 @@
         }
 
         .btn-primary-custom {
-            flex: 1;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            background: var(--primary);
             color: white;
             border: none;
             padding: 1rem;
@@ -342,30 +352,34 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
+            flex: 1;
+            display: inline-block;
+            text-align: center;
         }
 
         .btn-primary-custom:hover {
+            filter: brightness(0.92);
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+            box-shadow: 0 5px 20px rgba(206,106,215,0.3);
             color: white;
         }
 
         .btn-secondary-custom {
             flex: 1;
-            background: #6c757d;
-            color: white;
-            border: none;
+            background: white;
+            color: #6b7280;
+            border: 1.5px solid var(--border);
             padding: 1rem;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
-        .btn-secondary-custom:hover {
-            background: #5a6268;
-            color: white;
-        }
+        .btn-secondary-custom:hover { background: #f3f4f6; color: var(--dark); border-color: #d1d5db; }
 
         .status-badge {
             display: inline-block;
@@ -392,6 +406,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
@@ -399,7 +414,8 @@
             <a class="navbar-brand" href="{{ route('home') }}">
                 <i class="fas fa-spa"></i> Glow Skincare
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -415,28 +431,35 @@
                 </ul>
                 <div class="navbar-actions">
                     @auth
-                        <a href="{{ route('cart.index') }}" class="nav-link position-relative" style="color: white; text-decoration: none;">
+                        <a href="{{ route('cart.index') }}" class="nav-link position-relative"
+                            style="color: white; text-decoration: none;">
                             <i class="fas fa-shopping-cart"></i> Cart
                             @php
                                 $cart = session()->get('cart', []);
                                 $totalItems = array_sum($cart);
                             @endphp
-                            <span id="cart-count-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="{{ $totalItems > 0 ? '' : 'display:none;' }}">{{ $totalItems }}</span>
+                            <span id="cart-count-badge"
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                style="{{ $totalItems > 0 ? '' : 'display:none;' }}">{{ $totalItems }}</span>
                         </a>
-                        <a href="{{ route('wishlist.index') }}" class="position-relative" style="text-decoration: none; color: white; font-size: 1.2rem; margin-right: 1rem;">
+                        <a href="{{ route('wishlist.index') }}" class="position-relative"
+                            style="text-decoration: none; color: white; font-size: 1.2rem; margin-right: 1rem;">
                             <i class="fas fa-heart"></i>
                         </a>
                         <div class="user-menu">
-                            @if(auth()->user()->profile_image)
-                                <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile" class="navbar-profile-image">
+                            @if (auth()->user()->profile_image)
+                                <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile"
+                                    class="navbar-profile-image">
                             @else
-                                <div class="navbar-profile-image" style="background: var(--primary-color); display: flex; align-items: center; justify-content: center;">
+                                <div class="navbar-profile-image"
+                                    style="background: var(--primary); display: flex; align-items: center; justify-content: center;">
                                     <i class="fas fa-user" style="color: white;"></i>
                                 </div>
                             @endif
                             <span class="text-white ms-2">{{ auth()->user()->name }}</span>
                             <div class="dropdown ms-2">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white !important;">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false" style="color: white !important;">
                                     <i class="fas fa-chevron-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -446,22 +469,29 @@
                                             <div class="user-info-email">{{ auth()->user()->email }}</div>
                                         </div>
                                     </li>
-                                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user-circle"></i> Profile</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('wishlist.index') }}"><i class="fas fa-heart"></i> My Wishlist</a></li>
-                                    @if(auth()->check() && in_array(optional(auth()->user())->role, ['admin','super_admin'], true))
-                                        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class="fas fa-crown"></i> Admin Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i
+                                                class="fas fa-user-circle"></i> Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('wishlist.index') }}"><i
+                                                class="fas fa-heart"></i> My Wishlist</a></li>
+                                    @if (auth()->check() && in_array(optional(auth()->user())->role, ['admin', 'super_admin'], true))
+                                        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i
+                                                    class="fas fa-crown"></i> Admin Dashboard</a></li>
                                     @endif
-                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                                             @csrf
-                                            <button type="submit" class="dropdown-item" onclick="localStorage.clear();"><i class="fas fa-exchange-alt"></i> Switch Account</button>
+                                            <button type="submit" class="dropdown-item" onclick="localStorage.clear();"><i
+                                                    class="fas fa-exchange-alt"></i> Switch Account</button>
                                         </form>
                                     </li>
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                                             @csrf
-                                            <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                                            <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>
+                                                Logout</button>
                                         </form>
                                     </li>
                                 </ul>
@@ -482,7 +512,7 @@
             <div class="success-icon">
                 <i class="fas fa-check"></i>
             </div>
-            
+
             <div class="success-message">Order Placed Successfully! ✨</div>
             <p class="success-text">
                 Thank you for your purchase. Your order has been received and is being processed.
@@ -508,21 +538,42 @@
                     <span class="detail-label">Fulfillment</span>
                     <span class="detail-value">{{ ucfirst($order->fulfillment_method ?? 'delivery') }}</span>
                 </div>
-                @if(($order->fulfillment_method ?? 'delivery') === 'delivery')
+                @if (($order->fulfillment_method ?? 'delivery') === 'delivery')
+                    <div class="detail-row">
+                        <span class="detail-label">Delivery Address</span>
+                        <span class="detail-value">
+                            {{ $order->address_line }}
+                            @if ($order->city)
+                                , {{ $order->city }}
+                            @endif
+                            @if ($order->state)
+                                , {{ $order->state }}
+                            @endif
+                            @if ($order->postal_code)
+                                , {{ $order->postal_code }}
+                            @endif
+                            @if ($order->country)
+                                , {{ $order->country }}
+                            @endif
+                        </span>
+                    </div>
+                @endif
+
                 <div class="detail-row">
-                    <span class="detail-label">Delivery Address</span>
+                    <span class="detail-label">Delivery Fee</span>
                     <span class="detail-value">
-                        {{ $order->address_line }}
-                        @if($order->city) , {{ $order->city }} @endif
-                        @if($order->state) , {{ $order->state }} @endif
-                        @if($order->postal_code) , {{ $order->postal_code }} @endif
-                        @if($order->country) , {{ $order->country }} @endif
+                        @if(($order->fulfillment_method ?? 'delivery') === 'pickup')
+                            <span style="color: #16a34a; font-weight: 600;">Free (Pick Up)</span>
+                        @elseif(($order->delivery_charge ?? 0) > 0)
+                            ${{ number_format($order->delivery_charge, 2) }}
+                        @else
+                            <span style="color: #16a34a; font-weight: 600;">Free</span>
+                        @endif
                     </span>
                 </div>
-                @endif
                 <div class="detail-row">
                     <span class="detail-label">Total Amount</span>
-                    <span class="detail-value" style="color: var(--primary-color); font-size: 1.2rem;">
+                    <span class="detail-value" style="color: var(--primary); font-size: 1.2rem;">
                         ${{ number_format($order->total, 2) }}
                     </span>
                 </div>
@@ -531,11 +582,11 @@
             <!-- Items Summary -->
             <div class="order-items">
                 <h5 class="mb-3">Order Items ({{ count($order->items) }})</h5>
-                
-                @foreach($order->items as $item)
+
+                @foreach ($order->items as $item)
                     <div class="item-row">
                         <div class="success-item-image">
-                            @if($item->product->image)
+                            @if ($item->product->image)
                                 <img src="/storage/{{ $item->product->image }}" alt="{{ $item->product->name }}">
                             @else
                                 <i class="fas fa-image"></i>
@@ -569,4 +620,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

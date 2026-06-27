@@ -82,6 +82,10 @@ class UserController extends Controller
             'password' => 'nullable|string|min:8|confirmed',
             'role' => 'required|in:' . implode(',', $this->allowedRoles),
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'address' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:20',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
         // Prevent non-super admins from editing a super admin

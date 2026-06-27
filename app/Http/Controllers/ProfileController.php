@@ -24,7 +24,10 @@ class ProfileController extends Controller
             'email' => 'required|email|max:255|unique:users,email,' . auth()->id(),
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:500',
+            'password' => 'nullable|confirmed|min:8',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
         $user = auth()->user();
@@ -33,6 +36,8 @@ class ProfileController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
         ];
 
         // Handle image upload

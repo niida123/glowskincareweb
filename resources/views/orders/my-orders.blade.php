@@ -9,27 +9,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+        .navbar-toggler:focus,
+        .navbar-toggler:active {
+            outline: none;
+            box-shadow: none;
+        }
         :root {
-            --primary-color: #8b5cf6;
-            --secondary-color: #e9d5ff;
-            --dark-color: #2d1b4e;
-            --light-color: #f8f9fa;
+            --primary: #ce6ad7;
+            --secondary: #f3f4f6;
+            --dark: #111827;
+            --light: #ffffff;
+            --border: #e5e7eb;
+            --text: #374151;
+            --danger: #ef4444;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            color: var(--dark-color);
-            background-color: var(--light-color);
+            color: var(--text);
+            background-color: var(--secondary);
         }
 
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
+            color: var(--dark);
         }
 
         .navbar {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.95) 0%, rgba(236, 72, 153, 0.95) 100%);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            background: var(--primary);
+            box-shadow: 0 1px 8px rgba(0,0,0,0.08);
             padding: 1rem 0;
         }
 
@@ -66,16 +77,16 @@
         }
 
         .user-menu .dropdown-menu {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.98) 0%, rgba(192, 108, 132, 0.98) 100%);
-            border: none;
+            background: white;
+            border: 1px solid var(--border);
             border-radius: 10px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             min-width: 200px;
             margin-top: 0.5rem;
         }
 
         .user-menu .dropdown-item {
-            color: white;
+            color: var(--text);
             padding: 0.75rem 1.25rem;
             border-radius: 6px;
             margin: 0.25rem 0.5rem;
@@ -83,8 +94,8 @@
         }
 
         .user-menu .dropdown-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
+            background: var(--secondary);
+            color: var(--dark);
         }
 
         .user-menu .dropdown-item i {
@@ -94,18 +105,18 @@
 
         .user-info {
             padding: 0.75rem 1.25rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border);
             margin-bottom: 0.5rem;
         }
 
         .user-info-name {
-            color: white;
+            color: var(--dark);
             font-weight: 600;
             font-size: 0.9rem;
         }
 
         .user-info-email {
-            color: rgba(255, 255, 255, 0.7);
+            color: #6b7280;
             font-size: 0.8rem;
         }
 
@@ -167,14 +178,14 @@
 
         .page-header {
             background: white;
-            color: var(--dark-color);
+            color: var(--primary);
             padding: 2.2rem 0;
             margin-bottom: 2rem;
-            border-bottom: 4px solid var(--primary-color);
+            border-bottom: 4px solid var(--primary);
         }
 
         .page-header h1 {
-            color: var(--dark-color);
+            color: var(--primary);
             font-size: 2.2rem;
             font-weight: 700;
         }
@@ -189,13 +200,13 @@
             border-radius: 12px;
             padding: 1.8rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
             transition: all 0.3s ease;
-            border-left: 5px solid var(--primary-color);
+            border-left: 5px solid var(--primary);
         }
 
         .order-card:hover {
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
             transform: translateY(-2px);
         }
 
@@ -212,7 +223,7 @@
         }
 
         .order-card.cancelled {
-            border-left-color: #ef4444;
+            border-left-color: var(--danger);
         }
 
         .order-top {
@@ -225,7 +236,7 @@
         .order-id {
             font-size: 1.2rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--primary);
         }
 
         .order-date {
@@ -267,7 +278,7 @@
             gap: 1rem;
             margin-bottom: 1.2rem;
             padding-bottom: 1.2rem;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border);
         }
 
         .summary-item {
@@ -285,18 +296,18 @@
 
         .summary-value {
             font-weight: 600;
-            color: var(--dark-color);
+            color: var(--dark);
             font-size: 1.05rem;
         }
 
         .summary-total {
             font-size: 1.3rem;
-            color: var(--primary-color);
+            color: var(--primary);
             font-weight: 700;
         }
 
         .order-items {
-            background: #f9f9f9;
+            background: var(--secondary);
             padding: 1rem;
             border-radius: 8px;
             margin-bottom: 1rem;
@@ -317,7 +328,7 @@
             font-size: 0.9rem;
             padding: 0.5rem 0;
             color: #666;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border);
         }
 
         .item-row:last-child {
@@ -326,11 +337,45 @@
 
         .item-name {
             font-weight: 500;
-            color: var(--dark-color);
+            color: var(--dark);
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+            color: #666;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .item-name-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .item-thumb {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+
+        .item-thumb-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--secondary);
+            color: #999;
+            font-size: 1rem;
         }
 
         .btn-view-details {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #ec4899 100%);
+            background: var(--primary);
             color: white !important;
             border: none;
             padding: 0.65rem 1.4rem;
@@ -345,12 +390,13 @@
         .btn-view-details:hover {
             color: white !important;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
             text-decoration: none;
+            filter: brightness(0.9);
         }
 
         .btn-cancel-order {
-            background: #ef4444;
+            background: var(--danger);
             color: white !important;
             border: none;
             padding: 0.65rem 1.4rem;
@@ -367,7 +413,7 @@
             background: #dc2626;
             color: white !important;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.25);
             text-decoration: none;
         }
 
@@ -386,10 +432,11 @@
         }
 
         .footer {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
+            background: var(--secondary);
+            color: var(--text);
             margin-top: 3rem;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border);
         }
     </style>
 </head>
@@ -431,7 +478,7 @@
                             @if(auth()->user()->profile_image)
                                 <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile" class="navbar-profile-image">
                             @else
-                                <div class="navbar-profile-image" style="background: var(--primary-color); display: flex; align-items: center; justify-content: center;">
+                                <div class="navbar-profile-image" style="background: var(--primary); display: flex; align-items: center; justify-content: center;">
                                     <i class="fas fa-user" style="color: white;"></i>
                                 </div>
                             @endif
@@ -503,6 +550,28 @@
                         <span class="summary-value">{{ $order->items->count() }}</span>
                     </div>
                     <div class="summary-item">
+                        <span class="summary-label">Fulfillment</span>
+                        <span class="summary-value">
+                            @if($order->fulfillment_method === 'pickup')
+                                <span style="color: #8c57e9;"><i class="fas fa-store me-1"></i> Pickup</span>
+                            @else
+                                <span style="color: #eb25cd;"><i class="fas fa-truck me-1"></i> Delivery</span>
+                            @endif
+                        </span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Delivery Charge</span>
+                        <span class="summary-value">
+                            @if($order->fulfillment_method === 'pickup')
+                                <span style="color: #6b7280;">—</span>
+                            @elseif(($order->delivery_charge ?? 0) > 0)
+                                <span style="color: #ef4444; font-weight: 700;">${{ number_format($order->delivery_charge, 2) }}</span>
+                            @else
+                                <span style="color: #16a34a; font-weight: 700;">Free</span>
+                            @endif
+                        </span>
+                    </div>
+                    <div class="summary-item">
                         <span class="summary-label">Total</span>
                         <span class="summary-total">${{ number_format($order->total, 2) }}</span>
                     </div>
@@ -510,7 +579,7 @@
 
                 @if($order->items->count() > 0)
                     <div class="order-items">
-                        <div class="item-label" style="font-weight: 700; color: var(--primary-color);"><i class="fas fa-box-open me-2"></i>Items Ordered</div>
+                        <div class="item-label" style="font-weight: 700; color: var(--primary);"><i class="fas fa-box-open me-2"></i>Items Ordered</div>
                         @foreach($order->items as $item)
                             @php
                                 $unitPrice = (float) ($item->unit_price ?? 0);
@@ -524,13 +593,22 @@
                                 }
                             @endphp
                             <div class="item-row">
-                                <span class="item-name">{{ $item->product->name ?? 'Unknown' }}</span>
+                                <div class="item-name-wrap">
+                                    @if($item->product && $item->product->image)
+                                        <img src="{{ asset('storage/' . $item->product->image) }}" alt="{{ $item->product->name }}" class="item-thumb">
+                                    @else
+                                        <div class="item-thumb item-thumb-placeholder">
+                                            <i class="fas fa-image"></i>
+                                        </div>
+                                    @endif
+                                    <span class="item-name">{{ $item->product->name ?? 'Unknown' }}</span>
+                                </div>
                                 <span>
                                     @if($discountPercent > 0 && $unitPrice > $finalUnitPrice)
                                         {{ $item->quantity }} ×
                                         <span style="text-decoration: line-through; color: #9ca3af;">${{ number_format($unitPrice, 2) }}</span>
-                                        <span style="font-weight: 700; color: var(--primary-color);">${{ number_format($finalUnitPrice, 2) }}</span>
-                                        <span style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); color: white; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; margin-left: 0.35rem;">-{{ rtrim(rtrim(number_format($discountPercent, 2), '0'), '.') }}%</span>
+                                        <span style="font-weight: 700; color: var(--primary);">${{ number_format($finalUnitPrice, 2) }}</span>
+                                        <span style="background: var(--secondary); color: var(--text); border: 1px solid var(--border); padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; margin-left: 0.35rem;">-{{ rtrim(rtrim(number_format($discountPercent, 2), '0'), '.') }}%</span>
                                     @else
                                         {{ $item->quantity }} × ${{ number_format($finalUnitPrice, 2) }}
                                     @endif
@@ -551,7 +629,7 @@
                 <i class="fas fa-inbox" style="font-size: 4rem; color: #ddd; margin-bottom: 1rem; display: block;"></i>
                 <h3>No Orders Yet</h3>
                 <p class="text-muted">You haven't placed any orders yet. Start shopping now!</p>
-                <a href="/" class="btn btn-primary mt-3" style="background: linear-gradient(135deg, var(--primary-color) 0%, #ec4899 100%); border: none;">
+                <a href="/" class="btn btn-primary mt-3" style="background: var(--primary); border: none;">
                     <i class="fas fa-shopping-bag me-2"></i> Browse Products
                 </a>
             </div>

@@ -23,6 +23,7 @@ class Order extends Model
         'latitude',
         'longitude',
         'delivery_notes',
+        'delivery_charge',
     ];
 
     public const STATUS_PENDING = 'pending';

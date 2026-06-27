@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
 
+
 class OrderController extends Controller
 {
     public function index()
@@ -14,15 +15,17 @@ class OrderController extends Controller
         return view('admin.layouts.orders.index');
     }
 
-    public function list()
+    // API methods for managing orders
+    public function list(Request $request)
     {
+        $perPage = $request->get('per_page', 10);
+        
         $orders = Order::with('user', 'items.product')
             ->orderByDesc('id')
-            ->get();
+            ->paginate($perPage);
         
         return response()->json($orders);
     }
-
     public function show(Order $order)
     {
         $order->load('user', 'items.product');
